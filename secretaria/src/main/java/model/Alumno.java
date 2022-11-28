@@ -105,4 +105,12 @@ public class Alumno implements Serializable {
 		return matriculacion;
 	}
 
+	@Override
+	public String toString() {
+		return "Alumno [dni=" + dni + ", apellidos=" + apellidos + ", domicilio=" + domicilio + ", nombre=" + nombre
+				+ ", telefono=" + telefono + ", tipoacceso=" + tipoacceso + "]";
+	}
+	
+	
+
 }

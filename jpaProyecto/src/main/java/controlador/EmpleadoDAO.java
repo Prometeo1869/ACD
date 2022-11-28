@@ -1,12 +1,9 @@
 package controlador;
 
-import java.util.ArrayList;
-
 import dominio.Empleado;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import util.JpaUtil;
 

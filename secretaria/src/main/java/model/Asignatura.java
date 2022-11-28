@@ -75,4 +75,11 @@ public class Asignatura implements Serializable {
 		return matriculacion;
 	}
 
+	@Override
+	public String toString() {
+		return "Asignatura [codigo=" + codigo + ", creditos=" + creditos + ", titulo=" + titulo + "]";
+	}
+
+	
+
 }
