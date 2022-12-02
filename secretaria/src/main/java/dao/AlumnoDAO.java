@@ -57,9 +57,9 @@ public class AlumnoDAO {
 	public Alumno consultaAlumo(String dni) {
 		
 		EntityManager em = JpaUtil.getEntityManager();
-		Alumno empleado = em.find(Alumno.class, dni);
+		Alumno alumno = em.find(Alumno.class, dni);
 		em.close();
 
-		return empleado;
+		return alumno;
 	}
 }

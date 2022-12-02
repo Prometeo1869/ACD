@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import model.Alumno;
 import model.Asignatura;
 import util.JpaUtil;
 
@@ -32,21 +35,26 @@ public class AsignaturaDAO {
 	 * Consulta de asignatura por título: reciben el título de la asignatura y
 	 * devuelve el objeto o null si no lo encuentra.
 	 */
-	public Asignatura consultaAsignatura(String titulo) {
-/* VOY POR AQUIII /////////////////////////////////////////////////////////////////////////////////////////////
+	public Asignatura consultaAsignaturaTitulo(String titulo) {
 		EntityManager em = JpaUtil.getEntityManager();
-		TypedQuery<Asignatura> asignaturas = em.createQuery("select a from asignatura a", Asignatura.class);
 		Asignatura asignatura = new Asignatura();
-		for (Asignatura a : asignaturas.getResultList()) {
-			if (a.getTitulo().equals(titulo)) {
-				asignatura = a;
-				em.close();
-				return asignatura;
-			}
-		}
+		/////
+		TypedQuery<Asignatura> asignaturaTitulo = em.createQuery(
+				"select a from Asignatura a where a.titulo='" + titulo + "'",
+				Asignatura.class);
+	
+		asignatura = asignaturaTitulo.getSingleResult();
+		
 		em.close();
-		*/
-		return null;
 
+		return asignatura;
+	}
+	
+	public Asignatura consutaAsignaturaCodigo(String codigo) {
+		EntityManager em = JpaUtil.getEntityManager();
+		Asignatura asignatura = em.find(Asignatura.class, codigo);
+		em.close();
+
+		return asignatura;
 	}
 }
