@@ -2,7 +2,7 @@ package dao;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -13,7 +13,6 @@ import model.MatriculacionPK;
 import util.JpaUtil;
 
 public class MatriculaDAO {
-	
 
 	/**
 	 * Realizar matriculación: Recibe el identificador del alumno y de la
@@ -21,35 +20,31 @@ public class MatriculaDAO {
 	 * matrícula controlando que no haya una matrícula igual. Devuelve el
 	 * identificador de la matrícula.
 	 */
-	public MatriculacionPK realizarMatriculacion(String dni, String codigo) {
+	public MatriculacionPK realizarMatriculacion(String dni, String codigo, BigDecimal nota) {
 		AlumnoDAO alumnos = new AlumnoDAO();
 		AsignaturaDAO asignaturas = new AsignaturaDAO();
 		Matriculacion matricula = new Matriculacion();
-		if (alumnos.consultaAlumo(dni) != null && asignaturas.consutaAsignaturaCodigo(codigo) != null) {
-
-			MatriculacionPK matriculacionID = new MatriculacionPK();
-			matriculacionID.setDni(dni);
-			matriculacionID.setCodAsignatura(codigo);
-			matricula.setId(matriculacionID);
-
-			System.out.println("Nota:");
-			BigDecimal nota = new Scanner(System.in).nextBigDecimal();
-			matricula.setNota(nota);
-
+		Alumno alumno = alumnos.consultaAlumo(dni);
+		Asignatura asignatura = asignaturas.consutaAsignaturaCodigo(codigo);
+		if (alumno != null && asignatura != null) {
 			EntityManager em = JpaUtil.getEntityManager();
 			try {
+				MatriculacionPK matriculacionID = new MatriculacionPK();
+				matriculacionID.setDni(dni);
+				matriculacionID.setCodAsignatura(codigo);
+				matricula.setId(matriculacionID);
+				matricula.setNota(nota);
+
 				em.getTransaction().begin();
 				em.persist(matricula);
 				em.getTransaction().commit();
 				return matriculacionID;
 			} catch (Exception ex) {
-				ex.printStackTrace();
 				em.getTransaction().rollback();
 				return null;
 			} finally {
 				em.close();
 			}
-
 		} else {
 			return null;
 		}
@@ -60,69 +55,54 @@ public class MatriculaDAO {
 	 * comprueba la existencia de ésta y muestra el nombre, apellidos y nota de cada
 	 * alumnos matriculado en dicha asignatura.
 	 */
+
 	public String consultaAlumnos(String titulo) {
 		AlumnoDAO alumLista = new AlumnoDAO();
 		AsignaturaDAO asigLista = new AsignaturaDAO();
 		Asignatura asignatura = asigLista.consultaAsignaturaTitulo(titulo);
-		if(asignatura == null) {
-			return "NO EXISTE ASIGNATURA CON ESE TÍTULO";
+		String cadena = "";
+		if (asignatura == null) {
+			return "\nNO EXISTE ASIGNATURA CON ESE TÍTULO";
 		} else {
-			Alumno alumno = consultaMatriculaAsignatura(asignatura);
-			if(alumno == null) {
-				return "NO EXITE ALUMNO EN ESA ASIGNATURA";
+			ArrayList<Alumno> alumnos = consultaMatriculaAsignatura(asignatura);
+			if (alumnos == null) {
+				return "\nNO EXITEN ALUMNOS EN ESA ASIGNATURA";
 			} else {
-				EntityManager em = JpaUtil.getEntityManager();
-				Matriculacion matriculacion = new Matriculacion();
-				TypedQuery<Matriculacion> matri = em.createQuery(
-						"select a from Matricula a where a.COD_ASIGNATURA='" + asignatura.getCodigo() 
-						+ "AND a.DNI=" + alumno.getDni(), Matriculacion.class);
-			
-				matriculacion = matri.getSingleResult();
-				
-				em.close();
-				
-				String cadena = "" + alumno.getNombre() + " " + alumno.getApellidos() + ", Nota: " + matriculacion.getNota(); 
+				for(Alumno a: alumnos) {
+					EntityManager em = JpaUtil.getEntityManager();
+					Matriculacion matriculacion = new Matriculacion();
+					TypedQuery<Matriculacion> matri = em.createQuery("select a from Matriculacion a where a.asignatura='"
+							+ asignatura.getCodigo() + "' AND a.alumno='" + a.getDni() + "'", Matriculacion.class);
+					
+					matriculacion = matri.getSingleResult();
+					em.close();
+					cadena += "" + a.getNombre() + " " + a.getApellidos() + ", Nota: "
+							+ matriculacion.getNota() + "\n";
+					
+				}
 				return cadena;
 			}
 		}
-		
-	}
-	
-	public Alumno consultaMatriculaAsignatura(Asignatura asignatura) {
-		EntityManager em = JpaUtil.getEntityManager();
-		Matriculacion matriculacion = new Matriculacion();
-		
-		TypedQuery<Matriculacion> matri = em.createQuery(
-				"select a from Matricula a where a.COD_ASIGNATURA='" + asignatura.getCodigo() + "'",
-				Matriculacion.class);
-	
-		matriculacion = matri.getSingleResult();
-		
-		em.close();
 
-		return matriculacion.getAlumno();
+	}
+
+	public ArrayList<Alumno> consultaMatriculaAsignatura(Asignatura asignatura) {
+		EntityManager em = JpaUtil.getEntityManager();
+		List<Matriculacion> matriculaciones = new ArrayList<>();
+		try {
+			TypedQuery<Matriculacion> lista = em.createQuery(
+					"select a from Matriculacion a where a.asignatura='" + asignatura.getCodigo() + "'",
+					Matriculacion.class);
+
+			matriculaciones = lista.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+		em.close();
+		ArrayList<Alumno> listaAlumnos = new ArrayList<>();
+		for (Matriculacion a : matriculaciones) {
+			listaAlumnos.add(a.getAlumno());
+		}
+		return listaAlumnos;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

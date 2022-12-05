@@ -22,7 +22,6 @@ public class AlumnoDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			em.getTransaction().rollback();
 			return false;
 		} finally {
@@ -42,7 +41,6 @@ public class AlumnoDAO {
 			em.getTransaction().commit();
 			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			em.getTransaction().rollback();
 			return false;
 		} finally {
@@ -57,7 +55,12 @@ public class AlumnoDAO {
 	public Alumno consultaAlumo(String dni) {
 		
 		EntityManager em = JpaUtil.getEntityManager();
-		Alumno alumno = em.find(Alumno.class, dni);
+		Alumno alumno = new Alumno();
+		try {
+		alumno = em.find(Alumno.class, dni);
+		} catch (Exception e) {
+			return null;
+		}
 		em.close();
 
 		return alumno;

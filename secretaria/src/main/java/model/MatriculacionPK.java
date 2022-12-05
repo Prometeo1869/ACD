@@ -54,4 +54,10 @@ public class MatriculacionPK implements Serializable {
 		
 		return hash;
 	}
+	@Override
+	public String toString() {
+		return "MatriculacionPK [DNI:" + dni + ", Código de Asignatura:" + codAsignatura + "]\n";
+	}
+	
+	
 }

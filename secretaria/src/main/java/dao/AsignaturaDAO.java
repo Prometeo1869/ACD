@@ -38,21 +38,27 @@ public class AsignaturaDAO {
 	public Asignatura consultaAsignaturaTitulo(String titulo) {
 		EntityManager em = JpaUtil.getEntityManager();
 		Asignatura asignatura = new Asignatura();
-		/////
-		TypedQuery<Asignatura> asignaturaTitulo = em.createQuery(
-				"select a from Asignatura a where a.titulo='" + titulo + "'",
-				Asignatura.class);
-	
-		asignatura = asignaturaTitulo.getSingleResult();
-		
+
+		try {
+			TypedQuery<Asignatura> asignaturaTitulo = em
+					.createQuery("select a from Asignatura a where a.titulo='" + titulo + "'", Asignatura.class);
+			asignatura = asignaturaTitulo.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
 		em.close();
 
 		return asignatura;
 	}
-	
+
 	public Asignatura consutaAsignaturaCodigo(String codigo) {
 		EntityManager em = JpaUtil.getEntityManager();
-		Asignatura asignatura = em.find(Asignatura.class, codigo);
+		Asignatura asignatura = new Asignatura();
+		try {
+		asignatura = em.find(Asignatura.class, codigo);
+		} catch (Exception e) {
+			return null;
+		}
 		em.close();
 
 		return asignatura;
