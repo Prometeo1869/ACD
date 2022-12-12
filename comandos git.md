@@ -1,5 +1,5 @@
 # ACD
 
-git pull acd master
+git pull origin master
 
-git push acd master
+git push origin master
