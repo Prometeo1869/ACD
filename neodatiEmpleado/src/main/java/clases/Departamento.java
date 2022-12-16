@@ -1,16 +1,19 @@
 package clases;
 
-public class Departamento {
+import java.io.Serializable;
+
+public class Departamento implements Serializable {
 
 	private int deptNo;
 	private String dnombre;
 	private String loc;
 	public Departamento(int deptNo, String dnombre, String loc) {
-		super();
 		this.deptNo = deptNo;
 		this.dnombre = dnombre;
 		this.loc = loc;
 	}
+	public Departamento() {	}
+	
 	public int getDeptNo() {
 		return deptNo;
 	}

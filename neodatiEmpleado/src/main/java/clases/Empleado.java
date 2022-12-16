@@ -1,8 +1,10 @@
 package clases;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
-public class Empleado {
+public class Empleado implements Serializable {
 
 	private int empNo;
 	private String apellido;
@@ -24,6 +26,8 @@ public class Empleado {
 		this.comision = comision;
 		this.dept = dept;
 	}
+
+	public Empleado() {	}
 
 	public int getEmpNo() {
 		return empNo;
