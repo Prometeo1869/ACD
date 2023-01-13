@@ -1,14 +1,16 @@
 # ACD Docker oraclexe1
 
-$ docker start oraclexe1
+$ sudo docker start local-mongo
 
-$ cd ./Descargas/sqldeveloper/
+$ sudo docker exec -it local-mongo bash
 
-$ ./sqldeveloper.sh
+/# mongosh
+
+/# use mibasededatos
 
 # Ver ip 
 
-$ sudo docker exec -it oraclexe1 ip a
+$ sudo docker exec -it local-mongo ip a
 
 
 
