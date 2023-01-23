@@ -1,0 +1,1 @@
+db.media.insert(    [        {            "tipo":"DVD", "Titulo":"Blade Runner", "estreno": 1982        },        {            "tipo":"DVD", "Titulo":"Batman", "estreno": 1999         },        {            "tipo":"DVD", "Titulo":"Superman", "estreno":1999         }    ])
