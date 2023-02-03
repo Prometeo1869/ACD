@@ -1,0 +1,9 @@
+{ "_id" : 2, "nombre" : "Concierto", "fecha" : "2023-05-22", "ciudad" : "Córdoba", "precio" : 25.99 },
+{ "_id" : 3, "nombre" : "Teatro", "fecha" : "2023-02-09", "ciudad" : "Madrid", "precio" : 18.40 },
+{ "_id" : 4, "nombre" : "Circo", "fecha" : "2023-02-25", "ciudad" : "Cádiz", "precio" : 12.85 },
+{ "_id" : 5, "nombre" : "Semana Santa", "fecha" : "2023-03-28", "ciudad" : "Málaga", "precio" : 0 },
+{ "_id" : 6, "nombre" : "Feria de Abril", "fecha" : "2023-04-15", "ciudad" : "Sevilla", "precio" : 0 },
+{ "_id" : 7, "nombre" : "Corpus-Cristi", "fecha" : "2023-06-01", "ciudad" : "Sevilla", "precio" : 0 },
+{ "_id" : 8, "nombre" : "Vela de Santa Ana", "fecha" : "2023-09-25", "ciudad" : "Sevilla", "precio" : 0 },
+{ "_id" : 9, "nombre" : "Festival Gastronómico", "fecha" : "2023-01-20", "ciudad" : "Salamanca", "precio" : 12.00 },
+{ "_id" : 10, "nombre" : "Feria del Libro", "fecha" : "2023-05-14", "ciudad" : "Córdoba", "precio" : 5.00 }
