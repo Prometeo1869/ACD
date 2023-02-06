@@ -3,6 +3,7 @@ package repositorio;
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 /**
@@ -35,5 +36,34 @@ public class Conexion {
 	public String getMensaje() {
 		return mensaje;
 	}
+	
+	public void close() {
+		mongoClient.close();
+	}
+
+	public MongoCollection<Document> getColl() {
+		mensaje = "DOCUMENTO INSERTADO";
+		return coll;
+	}
+
+	public Document findById(int id) {
+		FindIterable<Document> iterable =  coll.find(new Document("_id", id));
+		return iterable.first();
+	}
+
+	public String findByNombre(String nombre) {
+		FindIterable<Document> iterable =  coll.find(new Document("nombre", nombre));
+
+		return String.valueOf(iterable.first());
+	}
+
+	public char[] findByOrden(int orden) {
+		FindIterable<Document> iterable =  coll.find().ord);
+
+		return String.valueOf(iterable.first());
+	}
+
+	
+	
 	
 }
