@@ -1,5 +1,7 @@
 package repositorio;
 
+import java.util.Iterator;
+
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
@@ -44,23 +46,6 @@ public class Conexion {
 	public MongoCollection<Document> getColl() {
 		mensaje = "DOCUMENTO INSERTADO";
 		return coll;
-	}
-
-	public Document findById(int id) {
-		FindIterable<Document> iterable =  coll.find(new Document("_id", id));
-		return iterable.first();
-	}
-
-	public String findByNombre(String nombre) {
-		FindIterable<Document> iterable =  coll.find(new Document("nombre", nombre));
-
-		return String.valueOf(iterable.first());
-	}
-
-	public char[] findByOrden(int orden) {
-		FindIterable<Document> iterable =  coll.find().ord);
-
-		return String.valueOf(iterable.first());
 	}
 
 	

@@ -1,0 +1,35 @@
+	{			"NOMBRE": "Aparatos",
+				"_id": "10",
+				"_tipo": "1"
+	}
+	{
+				"NOMBRE": "Piscina",
+				"_id": "11",
+				"_tipo": "1"
+	}
+	{
+				"NOMBRE": "Aerobic",
+				"_id": "20",
+				"_tipo": "2"
+	}
+	{
+				"NOMBRE": "Pilates",
+				"_id": "21",
+				"_tipo": "2"
+	}
+	{
+				"NOMBRE": "Spinning",
+				"_id": "22",
+				"_tipo": "2"
+	}
+	{
+				"NOMBRE": "Padel",
+				"_id": "31",
+				"_tipo": "3"
+	}
+	{
+				"NOMBRE": "Tenis",
+				"_id": "32",
+				"_tipo": "3"
+	}
+	
