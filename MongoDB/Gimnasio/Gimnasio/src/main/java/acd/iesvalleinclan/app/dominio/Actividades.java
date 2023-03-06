@@ -8,12 +8,11 @@ package acd.iesvalleinclan.app.dominio;
  */
 public class Actividades {
 
-	int id;
-	String nombre;
+	String id, nombre;
 	int tipo;
 	
 	//CONSTRUCTOR CON TODOS LOS ARGUMENTOS
-	public Actividades(int id, String nombre, int tipo) {
+	public Actividades(String id, String nombre, int tipo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -26,8 +25,8 @@ public class Actividades {
 	}
 
 	//GETTER & SETTER
-	public int getId() { return id; }
-	public void setId(int id) { this.id = id; }
+	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
 	public String getNombre() { return nombre; }
 	public void setNombre(String nombre) { this.nombre = nombre; }
 	public int getTipo() { return tipo; }

@@ -1,4 +1,4 @@
-package acd.iesvalleinclan.app.controlador;
+package acd.iesvalleinclan.app.dao;
 
 import org.bson.Document;
 
@@ -44,5 +44,29 @@ public class Consultas {
 	}
 	public void insertarDocumentoUsoGimnasio(Document docu) {
 		conn.getColUsoGimnasio().insertOne(docu);
+	}
+	
+	public Document findSocioById(String id) {
+		FindIterable<Document> iterable = conn.getColSocios().find(new Document("_id", id));
+		
+		return iterable.first();
+	}
+
+	public Document findActById(String id) {
+		FindIterable<Document> iterable = conn.getColActividades().find(new Document("_id" , id));
+		
+		return iterable.first();
+	}
+
+	public void eliminarSocio(String id) {
+		conn.getColSocios().deleteOne(new Document("_id", id));
+	}
+	
+	public void eliminarActividad(String id) {
+		conn.getColActividades().deleteOne(new Document("_id", id));
+	}
+	
+	public void eliminarUso(String id) {
+		conn.getColUsoGimnasio().deleteOne(new Document("_id", id));
 	}
 }

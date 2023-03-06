@@ -6,11 +6,11 @@ package acd.iesvalleinclan.app.dominio;
  *
  */
 public class UsoGimnasio {
-	int id, codsocio, codactiv, horainicio, horafinal;
-	String fecha;
+	String id, codsocio, codactiv, fecha;
+	int horainicio, horafinal;
 	
 	//CONSTRUCTOR CON TODOS LOS ARGUMENTOS
-	public UsoGimnasio(int id, int codsocio, int codactiv, int horainicio, int horafinal, String fecha) {
+	public UsoGimnasio(String id, String codsocio, String codactiv, int horainicio, int horafinal, String fecha) {
 		super();
 		this.id = id;
 		this.codsocio = codsocio;
@@ -26,12 +26,12 @@ public class UsoGimnasio {
 	}
 
 	//GETTER & SETTER
-	public int getId() { return id;	}
-	public void setId(int id) { this.id = id; }
-	public int getCodsocio() { return codsocio;	}
-	public void setCodsocio(int codsocio) {	this.codsocio = codsocio; }
-	public int getCodactiv() { return codactiv;	}
-	public void setCodactiv(int codactiv) {	this.codactiv = codactiv; }
+	public String getId() { return id;	}
+	public void setId(String id) { this.id = id; }
+	public String getCodsocio() { return codsocio;	}
+	public void setCodsocio(String codsocio) {	this.codsocio = codsocio; }
+	public String getCodactiv() { return codactiv;	}
+	public void setCodactiv(String codactiv) {	this.codactiv = codactiv; }
 	public int getHorainicio() { return horainicio; }
 	public void setHorainicio(int horainicio) {	this.horainicio = horainicio; }
 	public int getHorafinal() {	return horafinal; }

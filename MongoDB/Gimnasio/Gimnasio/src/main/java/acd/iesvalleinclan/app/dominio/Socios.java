@@ -7,12 +7,11 @@ package acd.iesvalleinclan.app.dominio;
  */
 public class Socios {
 	
-    int id;
-    String nombre, fecha_alt, direccion;
+    String id, nombre, fecha_alt, direccion;
     float cuota_fija;
     
 	//CONSTRUCTOR CON TODOS LOS ARGUMENTOS
-	public Socios(int id, String nombre, String fecha_alt, String direccion, float cuota_fija) {
+	public Socios(String id, String nombre, String fecha_alt, String direccion, float cuota_fija) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -27,8 +26,8 @@ public class Socios {
 	}
 
 	//GETTER & SETTER
-	public int getId() { return id;	}
-	public void setId(int id) { this.id = id; }
+	public String getId() { return id;	}
+	public void setId(String id) { this.id = id; }
 	public String getNombre() { return nombre; }
 	public void setNombre(String nombre) { this.nombre = nombre; }
 	public String getFecha_alt() { return fecha_alt; }
